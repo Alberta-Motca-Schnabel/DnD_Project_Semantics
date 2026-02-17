@@ -1,0 +1,45 @@
+================================================================================
+         FINAL MODEL ANALYSIS REPORT (V21 - SPLIT STATS)
+================================================================================
+MODEL: Llama_1B_OneShot_Smart
+----------------------------------------
+[GEN TASK] Total: 212
+  - PARTIAL_SUCCESS          : 162 (76.4%)
+  - SUCCESS                  : 50 (23.6%)
+
+[COMP TASK] Total: 212
+  - FAIL_MUTATION            : 35 (16.5%)
+  - FAIL_STAGNATION_COPY     : 70 (33.0%)
+  - FAIL_STAGNATION_EMPTY    : 1 (0.5%)
+  - PARTIAL_SUCCESS          : 68 (32.1%)
+  - SUCCESS                  : 38 (17.9%)
+
+[REF TASK] Total: 212
+  - SUCCESS                  : 212 (100.0%)
+
+[DETAILED ANALYSIS: GENERATION]
+  Most Frequent Missed Fields (Partial Failures):
+    - spells: 98
+    - weapons: 35
+  Most Frequent Correctly Filled Fields:
+    - hp: 50
+    - ac: 50
+    - skills: 50
+    - weapons: 50
+    - spells: 50
+--------------------
+[DETAILED ANALYSIS: COMPLETION]
+  Most Frequent Missed Fields (Partial Failures):
+    - subrace: 35
+    - stats_block: 26
+    - spells: 23
+    - subclass: 11
+    - weapons: 10
+  Most Frequent Correctly Filled Fields:
+    - background: 17
+    - weapons: 12
+    - subclass: 5
+    - stats_block: 3
+    - spells: 1
+
+########################################

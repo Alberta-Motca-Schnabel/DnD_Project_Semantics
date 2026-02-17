@@ -1,0 +1,20 @@
+VALIDATION REPORT (V15 - Full RAW LOGS Included)
+Directory: /content/drive/MyDrive/DnD_Project_Data/inference_results_finetuned&one_shot
+================================================================================
+
+MODEL: Llama_1B_OneShot_Smart
+----------------------------------------
+[FORMAT COMPLIANCE]
+  Valid JSON: 507 (79.7%)
+
+[SUBSTANCE & RULES PERFORMANCE]
+  GEN TASK (Total: 212)
+    - PARTIAL_SUCCESS     : 86 (40.6%)
+    - SUCCESS             : 126 (59.4%)
+  COMP TASK (Total: 212)
+    - FAIL_MUTATION       : 35 (16.5%)
+    - FAIL_STAGNATION     : 83 (39.2%)
+    - PARTIAL_SUCCESS     : 87 (41.0%)
+    - SUCCESS             : 7 (3.3%)
+  REF TASK (Total: 212)
+    - SUCCESS             : 212 (100.0%)

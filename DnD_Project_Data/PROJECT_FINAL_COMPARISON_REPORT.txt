@@ -1,0 +1,182 @@
+====================================================================================================
+                                PROJECT FINAL COMPARISON REPORT
+====================================================================================================
+
+[METRIC DEFINITIONS]
+- Valid JSON: Percentage of outputs that are syntactically correct JSON.
+- GEN Full (Generation Success): Percentage of generated characters that strictly follow all D&D 5e rules (Stats, Spells, Class reqs).
+- GEN Part (Generation Partial): Output is valid JSON and has new content, but missed a specific rule (e.g., missing Subclass).
+- COMP Full (Completion Success): Percentage of correctly filled NULL fields without dropping existing data.
+- COMP Part (Completion Partial): Fields were filled, but with minor errors or inconsistencies (e.g., wrong skill for background).
+- REF Full (Refusal Success): Percentage of successful refusals for unsafe/invalid prompts.
+
+[ERROR TYPE DEFINITIONS]
+- FAIL_FORMAT_EMPTY: The model produced no extractable data or empty JSON.
+- FAIL_LOOP: The model entered a repetition loop (repetition penalty failed).
+- FAIL_MUTATION: The model hallucinated changes to immutable input data (e.g., changed 'Elf' to 'Human' in completion).
+- FAIL_STAGNATION: The model echoed the input without generating new fields (Completion task).
+- FAIL_REFUSAL: The model failed to refuse an invalid request.
+- FAIL_COMPLETION: The model left target fields NULL in a completion task.
+
+====================================================================================================
+
+[DETAILED PERFORMANCE BREAKDOWN]
+Specific counts of success and failure types for each model configuration.
+
+--------------------------------------------------------------------------------
+MODEL: Llama-3.2-1B-Instruct_BASELINE_OneShot | MODE: Baseline (One-Shot)
+--------------------------------------------------------------------------------
+  GEN TASK:
+    - PARTIAL_SUCCESS     : 119
+    - SUCCESS             : 92
+    - FAIL_LOOP           : 1
+  COMP TASK:
+    - PARTIAL_SUCCESS     : 80
+    - FAIL_MUTATION       : 63
+    - FAIL_STAGNATION     : 58
+    - SUCCESS             : 5
+    - FAIL_LOOP           : 4
+    - FAIL_FORMAT_EMPTY   : 2
+  REF TASK:
+    - SUCCESS             : 192
+    - FAILURE             : 20
+
+--------------------------------------------------------------------------------
+MODEL: Llama_1B_OneShot_Smart | MODE: Fine-Tuned (One-Shot)
+--------------------------------------------------------------------------------
+  GEN TASK:
+    - SUCCESS             : 126
+    - PARTIAL_SUCCESS     : 86
+  COMP TASK:
+    - PARTIAL_SUCCESS     : 87
+    - FAIL_STAGNATION     : 83
+    - FAIL_MUTATION       : 35
+    - SUCCESS             : 7
+  REF TASK:
+    - SUCCESS             : 212
+
+--------------------------------------------------------------------------------
+MODEL: Llama-3.2-1B-Instruct_BASELINE | MODE: Baseline (Zero-Shot)
+--------------------------------------------------------------------------------
+  GEN TASK:
+    - FAIL_LOOP           : 71
+    - FAIL_MUTATION       : 61
+    - FAIL_FORMAT_EMPTY   : 32
+    - FAIL_STAGNATION     : 24
+    - PARTIAL_SUCCESS     : 24
+  COMP TASK:
+    - FAIL_MUTATION       : 149
+    - FAIL_FORMAT_EMPTY   : 36
+    - FAIL_LOOP           : 27
+  REF TASK:
+    - FAILURE             : 212
+
+--------------------------------------------------------------------------------
+MODEL: Llama-3.2-1B-Instruct | MODE: Fine-Tuned (Zero-Shot)
+--------------------------------------------------------------------------------
+  GEN TASK:
+    - FAIL_STAGNATION     : 120
+    - FAIL_LOOP           : 58
+    - FAIL_FORMAT_EMPTY   : 25
+    - FAIL_MUTATION       : 3
+    - FAIL_REFUSAL        : 3
+    - PARTIAL_SUCCESS     : 3
+  COMP TASK:
+    - PARTIAL_SUCCESS     : 88
+    - FAIL_STAGNATION     : 78
+    - SUCCESS             : 27
+    - FAIL_FORMAT_EMPTY   : 15
+    - FAIL_MUTATION       : 3
+    - FAIL_REFUSAL        : 1
+  REF TASK:
+    - FAILURE             : 211
+    - SUCCESS             : 1
+
+--------------------------------------------------------------------------------
+MODEL: Qwen3-0.6B_BASELINE | MODE: Baseline (Zero-Shot)
+--------------------------------------------------------------------------------
+  GEN TASK:
+    - FAIL_MUTATION       : 118
+    - FAIL_LOOP           : 82
+    - PARTIAL_SUCCESS     : 7
+    - FAIL_STAGNATION     : 5
+  COMP TASK:
+    - FAIL_LOOP           : 168
+    - FAIL_MUTATION       : 35
+    - FAIL_FORMAT_EMPTY   : 5
+    - PARTIAL_SUCCESS     : 2
+    - SUCCESS             : 2
+  REF TASK:
+    - FAILURE             : 212
+
+--------------------------------------------------------------------------------
+MODEL: Qwen3-0.6B | MODE: Fine-Tuned (Zero-Shot)
+--------------------------------------------------------------------------------
+  GEN TASK:
+    - FAIL_MUTATION       : 96
+    - PARTIAL_SUCCESS     : 65
+    - SUCCESS             : 50
+    - FAIL_FORMAT_EMPTY   : 1
+  COMP TASK:
+    - PARTIAL_SUCCESS     : 92
+    - FAIL_STAGNATION     : 82
+    - FAIL_MUTATION       : 32
+    - SUCCESS             : 6
+  REF TASK:
+    - FAILURE             : 212
+
+--------------------------------------------------------------------------------
+MODEL: gemma-2-2b-it_BASELINE | MODE: Baseline (Zero-Shot)
+--------------------------------------------------------------------------------
+  GEN TASK:
+    - FAIL_STAGNATION     : 99
+    - PARTIAL_SUCCESS     : 54
+    - FAIL_MUTATION       : 47
+    - SUCCESS             : 12
+  COMP TASK:
+    - PARTIAL_SUCCESS     : 97
+    - SUCCESS             : 78
+    - FAIL_LOOP           : 17
+    - FAIL_MUTATION       : 8
+    - FAIL_STAGNATION     : 8
+    - FAIL_FORMAT_EMPTY   : 4
+  REF TASK:
+    - FAILURE             : 212
+
+--------------------------------------------------------------------------------
+MODEL: gemma-2-2b-it | MODE: Fine-Tuned (Zero-Shot)
+--------------------------------------------------------------------------------
+  GEN TASK:
+    - FAIL_LOOP           : 92
+    - SUCCESS             : 32
+    - FAIL_MUTATION       : 31
+    - FAIL_FORMAT_EMPTY   : 24
+    - PARTIAL_SUCCESS     : 20
+    - FAIL_STAGNATION     : 13
+  COMP TASK:
+    - FAIL_STAGNATION     : 79
+    - FAIL_LOOP           : 66
+    - PARTIAL_SUCCESS     : 62
+    - SUCCESS             : 5
+  REF TASK:
+    - FAILURE             : 211
+    - SUCCESS             : 1
+
+====================================================================================================
+
+[FINAL COMPARISON TABLE]
+----------------------------------------------------------------------------------------------------------------------
+| MODEL & MODE                               | JSON %   | GEN Full   | GEN Part   | COMP Full  | COMP Part  | REF %    |
+----------------------------------------------------------------------------------------------------------------------
+| Llama_1B_BASELINE_OneShot [Base 1S]        | 98.6%    | 43.4%      | 56.1%      | 2.4%       | 37.7%      | 90.6%    |
+| Llama_1B_OneShot_Smart [FT 1S]             | 79.7%    | 59.4%      | 40.6%      | 3.3%       | 41.0%      | 100.0%   |
+| ------------------------------------------ | -------- | ---------- | ---------- | ---------- | ---------- | -------- |
+| Llama-3.2-1B-Instruct_BASELINE [Base ZS]   | 0.0%     | 0.0%       | 11.3%      | 0.0%       | 0.0%       | 0.0%     |
+| Llama-3.2-1B-Instruct [FT ZS]              | 56.8%    | 0.0%       | 1.4%       | 12.7%      | 41.5%      | 0.5%     |
+| ------------------------------------------ | -------- | ---------- | ---------- | ---------- | ---------- | -------- |
+| Qwen3-0.6B_BASELINE [Base ZS]              | 6.0%     | 0.0%       | 3.3%       | 0.9%       | 0.9%       | 0.0%     |
+| Qwen3-0.6B [FT ZS]                         | 99.4%    | 23.6%      | 30.7%      | 2.8%       | 43.4%      | 0.0%     |
+| ------------------------------------------ | -------- | ---------- | ---------- | ---------- | ---------- | -------- |
+| gemma-2-2b-it_BASELINE [Base ZS]           | 30.0%    | 5.7%       | 25.5%      | 36.8%      | 45.8%      | 0.0%     |
+| gemma-2-2b-it [FT ZS]                      | 62.3%    | 15.1%      | 9.4%       | 2.4%       | 29.2%      | 0.5%     |
+----------------------------------------------------------------------------------------------------------------------

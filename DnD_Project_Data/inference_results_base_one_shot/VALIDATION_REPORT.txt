@@ -1,0 +1,24 @@
+VALIDATION REPORT (V15 - Full RAW LOGS Included)
+Directory: /content/drive/MyDrive/DnD_Project_Data/inference_results_base_one_shot
+================================================================================
+
+MODEL: Llama_1B_BASE_OneShot
+----------------------------------------
+[FORMAT COMPLIANCE]
+  Valid JSON: 627 (98.6%)
+
+[SUBSTANCE & RULES PERFORMANCE]
+  GEN TASK (Total: 212)
+    - FAIL_LOOP           : 1 (0.5%)
+    - PARTIAL_SUCCESS     : 119 (56.1%)
+    - SUCCESS             : 92 (43.4%)
+  COMP TASK (Total: 212)
+    - FAIL_FORMAT_EMPTY   : 2 (0.9%)
+    - FAIL_LOOP           : 4 (1.9%)
+    - FAIL_MUTATION       : 63 (29.7%)
+    - FAIL_STAGNATION     : 58 (27.4%)
+    - PARTIAL_SUCCESS     : 80 (37.7%)
+    - SUCCESS             : 5 (2.4%)
+  REF TASK (Total: 212)
+    - FAILURE             : 20 (9.4%)
+    - SUCCESS             : 192 (90.6%)
